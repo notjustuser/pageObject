@@ -17,11 +17,4 @@ public class MainPage extends AbsBasePage {
         driver.findElement(authButtonLocator).click();
         return new SignInPopup(driver);
     }
-
-//    public MainPage goToAboutMePage() {
-//        clickAuthButton().popupShouldBeVisible();
-//        SignInPopup.
-//        return this;
-//    }
-
 }

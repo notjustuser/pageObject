@@ -46,8 +46,8 @@
                     <systemPropertyVariables>
                         <browser>chrome</browser>
                         <main.page>https://otus.ru/</main.page>
-                        <email>test9@gmail.com</email>
-                        <password>vg2hsgL–j7!</password>
+                        <email></email>
+                        <password></password>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>

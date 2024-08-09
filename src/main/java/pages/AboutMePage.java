@@ -8,12 +8,13 @@ import org.openqa.selenium.WebElement;
 public class AboutMePage extends AbsBasePage {
 
     private final String inputSelectorTemplate = "input[name='%s']";
-    private final String deleteLocatorTemplate = "(//button[contains(text(), '%s')]) [last()%d]";
     private final String contactLocatorTemplate = "(//button[contains(text(), '%s')]) [last()]";
     private final By setMethodLocator = By.xpath("(//span[@class='placeholder']) [last()]");
     private final String socialNetLocatorTemplate = "(//button[@data-value='%s']) [last()]";
     private final String fieldSelectorTemplate = "input#id_contact-%d-value";
     private final By saveSelector = By.cssSelector("button[title='Сохранить и заполнить позже']");
+    private String deleteLocator = "(//div[@class='lk-cv-block__input-alignment']/button)[last()%s]";
+
     public AboutMePage(WebDriver driver) {
         super(driver);
     }
@@ -25,16 +26,6 @@ public class AboutMePage extends AbsBasePage {
 
         return this;
     }
-
-//    public AboutMePage setContacts(String name, int num, String socials) {
-//        driver.findElement(By.xpath(String.format(contactLocatorTemplate, "Добавить"))).click();
-//        driver.findElement(setMethodLocator).click();
-//        driver.findElement(By.xpath(String.format(socialNetLocatorTemplate, name))).click();
-//        WebElement input = driver.findElement(By.cssSelector(String.format(fieldSelectorTemplate, num)));
-//        input.click();
-//        input.sendKeys(socials);
-//         return this;
-//    }
 
     public AboutMePage setContacts(String name, int num, String socials) {
         driver.findElement(By.xpath(String.format(contactLocatorTemplate, "Добавить"))).click();
@@ -62,17 +53,6 @@ public class AboutMePage extends AbsBasePage {
         return this;
     }
 
-    public AboutMePage fullCheck() {
-        checkContacts("fname", "Abra");
-        checkContacts("fname_latin", "Kadabra");
-        checkContacts("lname", "Abrum");
-        checkContacts("lname_latin", "Kalabum");
-        checkContacts("date_of_birth", "20.08.2012");
-        checkSocials(1, "https://t.me/durov");
-        checkSocials(2, "https://vk.com/durov");
-        return this;
-    }
-
     public AboutMePage fullInput() {
         clearInput("fname", "Abra");
         clearInput("fname_latin", "Kadabra");
@@ -85,8 +65,19 @@ public class AboutMePage extends AbsBasePage {
         return this;
     }
 
-    public AboutMePage clearContacts(String name, int num) {
-        driver.findElement(By.xpath(String.format(deleteLocatorTemplate, name, num))).click();
+    public AboutMePage fullCheck() {
+        checkContacts("fname", "Abra");
+        checkContacts("fname_latin", "Kadabra");
+        checkContacts("lname", "Abrum");
+        checkContacts("lname_latin", "Kalabum");
+        checkContacts("date_of_birth", "20.08.2012");
+        checkSocials(0, "https://t.me/durov");
+        checkSocials(1, "https://vk.com/durov");
+        return this;
+    }
+
+    public AboutMePage clearContacts(String num) {
+        driver.findElement(By.xpath(String.format(deleteLocator,num))).click();
         return this;
     }
 }
