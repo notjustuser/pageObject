@@ -2,6 +2,8 @@ package mainpage;
 
 import components.DropDownListComponent;
 import components.popups.SignInPopup;
+import data.BrowserNameData;
+import data.IData;
 import factory.WebDriverFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,10 +18,11 @@ import utils.waiters.Waiter;
 public class MainPageTest {
     private WebDriver driver;
     private Waiter waiter;
+    BrowserNameData browserName = BrowserNameData.valueOf(System.getProperty("browser").toUpperCase());
 
     @BeforeEach
     public void setup() {
-        driver = new WebDriverFactory().create();
+        driver = new WebDriverFactory().create(browserName);
         waiter = new Waiter(driver);
     }
 
@@ -54,7 +57,7 @@ public class MainPageTest {
 
         driver.quit();
 
-        driver = new WebDriverFactory().create();
+        driver = new WebDriverFactory().create(browserName);
         new MainPage(driver).open("/");
         new MainPage(driver)
                 .clickAuthButton()
