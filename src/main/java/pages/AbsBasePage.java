@@ -1,9 +1,7 @@
 package pages;
 
-import factory.WebDriverFactory;
 import org.openqa.selenium.WebDriver;
 import utils.AbsCommon;
-import utils.waiters.Waiter;
 
 public abstract class AbsBasePage extends AbsCommon {
 
