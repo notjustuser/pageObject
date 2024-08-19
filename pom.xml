@@ -48,6 +48,7 @@
                         <main.page>https://otus.ru/</main.page>
                         <email></email>
                         <password></password>
+                        <remote.url></remote.url>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>

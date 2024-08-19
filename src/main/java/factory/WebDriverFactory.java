@@ -10,7 +10,9 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class WebDriverFactory {
 
-    public WebDriver create(BrowserNameData browserNameData) {
+    private BrowserNameData browserNameData = BrowserNameData.valueOf(System.getProperty("browser"));
+
+    public WebDriver create(){
         switch (browserNameData) {
             case CHROME: {
                 WebDriverManager.chromedriver().setup();

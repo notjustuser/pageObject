@@ -2,8 +2,6 @@ package mainpage;
 
 import components.DropDownListComponent;
 import components.popups.SignInPopup;
-import data.BrowserNameData;
-import data.IData;
 import factory.WebDriverFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,15 +12,15 @@ import pages.MainPage;
 import pages.PersonalAccountPage;
 import utils.waiters.Waiter;
 
+import java.net.MalformedURLException;
 
 public class MainPageTest {
     private WebDriver driver;
     private Waiter waiter;
-    BrowserNameData browserName = BrowserNameData.valueOf(System.getProperty("browser").toUpperCase());
 
     @BeforeEach
-    public void setup() {
-        driver = new WebDriverFactory().create(browserName);
+    public void setup() throws MalformedURLException {
+        driver = new WebDriverFactory().create();
         waiter = new Waiter(driver);
     }
 
@@ -34,7 +32,7 @@ public class MainPageTest {
     }
 
     @Test
-    public void checkContacts() {
+    public void checkContacts() throws MalformedURLException {
         MainPage mainPage = new MainPage(driver);
         mainPage.open("/");
         mainPage
@@ -57,7 +55,7 @@ public class MainPageTest {
 
         driver.quit();
 
-        driver = new WebDriverFactory().create(browserName);
+        driver = new WebDriverFactory().create();
         new MainPage(driver).open("/");
         new MainPage(driver)
                 .clickAuthButton()
