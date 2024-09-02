@@ -1,5 +1,6 @@
 package pages;
 
+import data.Person;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -53,26 +54,26 @@ public class AboutMePage extends AbsBasePage {
         return this;
     }
 
-    public AboutMePage fullInput() {
-        clearInput("fname", "Abra");
-        clearInput("fname_latin", "Kadabra");
-        clearInput("lname", "Abrum");
-        clearInput("lname_latin", "Kalabum");
-        clearInput("date_of_birth", "20.08.2012");
+    public AboutMePage fullInput(Person person) {
+        clearInput("fname", person.getFirstName());
+        clearInput("fname_latin", person.getFirstNameLatin());
+        clearInput("lname", person.getLastName());
+        clearInput("lname_latin", person.getLastNameLatin());
+        clearInput("date_of_birth", person.getBirthdate());
 
-        setContacts("telegram", 1, "https://t.me/durov");
-        setContacts("vk", 2, "https://vk.com/durov");
+        setContacts(person.getFirstSocials(), 1, person.getFirstLink());
+        setContacts(person.getSecondSocials(), 2, person.getSecondLink());
         return this;
     }
 
-    public AboutMePage fullCheck() {
-        checkContacts("fname", "Abra");
-        checkContacts("fname_latin", "Kadabra");
-        checkContacts("lname", "Abrum");
-        checkContacts("lname_latin", "Kalabum");
-        checkContacts("date_of_birth", "20.08.2012");
-        checkSocials(0, "https://t.me/durov");
-        checkSocials(1, "https://vk.com/durov");
+    public AboutMePage fullCheck(Person person) {
+        checkContacts("fname", person.getFirstName());
+        checkContacts("fname_latin", person.getFirstNameLatin());
+        checkContacts("lname", person.getLastName());
+        checkContacts("lname_latin", person.getLastNameLatin());
+        checkContacts("date_of_birth", person.getBirthdate());
+        checkSocials(0, person.getFirstLink());
+        checkSocials(1, person.getSecondLink());
         return this;
     }
 

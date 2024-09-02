@@ -45,7 +45,7 @@
                 <configuration>
                     <systemPropertyVariables>
                         <browser>chrome</browser>
-                        <main.page>https://otus.ru/</main.page>
+                        <main.page>https://otus.ru</main.page>
                         <email></email>
                         <password></password>
                         <remote.url></remote.url>

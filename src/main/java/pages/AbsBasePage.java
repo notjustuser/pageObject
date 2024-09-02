@@ -13,6 +13,6 @@ public abstract class AbsBasePage extends AbsCommon {
 
     public void open(String path) {
         path = !path.startsWith("/") ? "/" + path: path;
-        driver.get(baseUrl);
+        driver.get(baseUrl + path);
     }
 }

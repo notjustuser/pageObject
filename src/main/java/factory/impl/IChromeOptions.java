@@ -1,7 +1,9 @@
 package factory.impl;
 
-import org.openqa.selenium.MutableCapabilities;
+import org.openqa.selenium.WebDriver;
+
+import java.net.MalformedURLException;
 
 public interface IChromeOptions {
-    MutableCapabilities settings();
+    WebDriver settings() throws MalformedURLException;
 }

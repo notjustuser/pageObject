@@ -7,20 +7,17 @@ import utils.AbsCommon;
 
 public class DropDownListComponent extends AbsCommon {
 
-    private String name;
-
-    public DropDownListComponent(WebDriver driver, String name) {
+    public DropDownListComponent(WebDriver driver) {
         super(driver);
-
-        this.name = name;
     }
 
-    private String hoverAbleLocatorTemplate = "//span[contains(text(),'%s')]";
+    private  String profilePictureTemplate = "img[src='%s']";
+    private String profilePictureSelector = String.format(profilePictureTemplate, "/_next/static/images/img/pink-owl-8e5a051ea32951df20c17b6479d3677f.png");
     private By lkButtonLocator = By.linkText("Личный кабинет");
 
     public DropDownListComponent clickLKButton() {
         new Actions(driver)
-                .moveToElement(driver.findElement(By.xpath(String.format(hoverAbleLocatorTemplate, name))))
+                .moveToElement(driver.findElement(By.xpath(profilePictureSelector)))
                 .perform();
         driver.findElement(lkButtonLocator).click();
 

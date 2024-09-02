@@ -7,12 +7,13 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import java.net.MalformedURLException;
 
 public class WebDriverFactory {
 
-    private BrowserNameData browserNameData = BrowserNameData.valueOf(System.getProperty("browser"));
+    private BrowserNameData browserNameData = BrowserNameData.valueOf(System.getProperty("browser").toUpperCase());
 
-    public WebDriver create(){
+    public WebDriver create() throws MalformedURLException {
         switch (browserNameData) {
             case CHROME: {
                 WebDriverManager.chromedriver().setup();

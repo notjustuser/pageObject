@@ -2,6 +2,7 @@ package mainpage;
 
 import components.DropDownListComponent;
 import components.popups.SignInPopup;
+import data.Person;
 import factory.WebDriverFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,18 +11,15 @@ import org.openqa.selenium.WebDriver;
 import pages.AboutMePage;
 import pages.MainPage;
 import pages.PersonalAccountPage;
-import utils.waiters.Waiter;
 
 import java.net.MalformedURLException;
 
 public class MainPageTest {
     private WebDriver driver;
-    private Waiter waiter;
 
     @BeforeEach
     public void setup() throws MalformedURLException {
         driver = new WebDriverFactory().create();
-        waiter = new Waiter(driver);
     }
 
     @AfterEach
@@ -43,14 +41,14 @@ public class MainPageTest {
                 .authorize()
                 .popupShouldNotBeVisible();
 
-        new DropDownListComponent(driver, "Abra").clickLKButton();
+        new DropDownListComponent(driver).clickLKButton();
 
 
         new PersonalAccountPage(driver).clickAboutMeButton();
 
-
+        Person person = new Person("Abra", "Kadabra", "Abrum", "Kalabum", "20.12.20", "telegram", "https://t.me/durov", "vk", "https://vk.com/durov");
         new AboutMePage(driver)
-                .fullInput()
+                .fullInput(person)
                 .clickSaveButton();
 
         driver.quit();
@@ -65,10 +63,10 @@ public class MainPageTest {
                 .authorize()
                 .popupShouldNotBeVisible();
 
-        new DropDownListComponent(driver, "Abra").clickLKButton();
+        new DropDownListComponent(driver).clickLKButton();
         new PersonalAccountPage(driver).clickAboutMeButton();
 
-        new AboutMePage(driver).fullCheck()
+        new AboutMePage(driver).fullCheck(person)
                 .clearContacts("")
                 .clearContacts("-2")
                 .clickSaveButton();
